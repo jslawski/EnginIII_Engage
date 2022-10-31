@@ -15,6 +15,7 @@ public class PlayerSkills
         this.AddSkill("MoveState");
         this.AddSkill("FallState");
         this.AddSkill("JumpState");
+        this.AddSkill("WallJumpState");  //This one is inaccessible until the player unlocks the WallSlideState
     }
 
     public void AddSkill(string newSkill)

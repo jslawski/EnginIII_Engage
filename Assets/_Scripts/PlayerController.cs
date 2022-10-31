@@ -73,6 +73,13 @@ public class PlayerController : MonoBehaviour
         {
             this.waterCollider = other;
         }
+
+        if (other.tag == "Skill")
+        {
+            SkillPickup newSkill = other.gameObject.GetComponent<SkillPickup>();
+            this.skills.AddSkill(newSkill.skillStateName);
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -80,6 +87,6 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Water")
         {
             this.waterCollider = null;
-        }
+        }        
     }
 }
