@@ -18,11 +18,23 @@ public class PlayerState
 
     public virtual void UpdateState()
     {
-        if (this.controller.waterCollider != null && this.controller.currentState.GetType() != typeof(UnderwaterState) &&
-            this.controller.currentState.GetType() != typeof(JumpState))
+        if (this.controller.waterCollider != null)
         {
-            this.controller.ChangeState(new UnderwaterState());
+            if (this.controller.skills.HasSkill("UnderwaterState") == true)
+            {
+                if (this.controller.currentState.GetType() != typeof(UnderwaterState) &&
+                this.controller.currentState.GetType() != typeof(JumpState))
+                {
+                    this.controller.ChangeState(new UnderwaterState());
+                }
+            }
+            else
+            {
+                this.controller.ChangeState(new DieState());
+            }            
         }
+
+        
     }
 
     public virtual void FixedUpdateState() { }

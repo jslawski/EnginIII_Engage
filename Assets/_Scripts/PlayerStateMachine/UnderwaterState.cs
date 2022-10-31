@@ -11,13 +11,13 @@ public class UnderwaterState : PlayerState
     private float underwaterAngularDrag = 1.0f;
     private float airDrag = 0.0f;
     private float airAngularDrag = 0.05f;
-    
+
     public override void Enter(PlayerController controller)
     {
         base.Enter(controller);
 
         this.controller.playerRb.drag = this.underwaterDrag;
-        this.controller.playerRb.angularDrag = this.underwaterAngularDrag;
+        this.controller.playerRb.angularDrag = this.underwaterAngularDrag;        
     }
 
     public override void Exit()
@@ -69,7 +69,6 @@ public class UnderwaterState : PlayerState
         }
 
         this.ApplyBuoyancyForce();
-
 
         base.FixedUpdateState();
     }
