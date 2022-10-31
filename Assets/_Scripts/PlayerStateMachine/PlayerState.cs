@@ -15,7 +15,16 @@ public class PlayerState
     }
 
     public virtual void Exit() { }
-    public virtual void UpdateState() { }
+
+    public virtual void UpdateState()
+    {
+        if (this.controller.waterCollider != null && this.controller.currentState.GetType() != typeof(UnderwaterState) &&
+            this.controller.currentState.GetType() != typeof(JumpState))
+        {
+            this.controller.ChangeState(new UnderwaterState());
+        }
+    }
+
     public virtual void FixedUpdateState() { }
 
     protected bool IsGrounded()

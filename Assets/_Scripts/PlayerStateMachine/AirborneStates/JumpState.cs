@@ -14,6 +14,8 @@ public class JumpState : AirborneState
     {
         base.Enter(controller);
 
+        this.controller.playerRb.velocity = new Vector3(this.controller.playerRb.velocity.x, 0.0f, 0.0f);
+
         this.controller.characterAnimator.SetBool("Jump", true);
         this.controller.playerRb.AddForce(Vector3.up * this.initialJumpForce, ForceMode.Impulse);
 
@@ -29,9 +31,7 @@ public class JumpState : AirborneState
     }
 
     public override void UpdateState()
-    {
-        base.UpdateState();
-
+    {        
         if (Input.GetKeyUp(KeyCode.Space))
         {
             this.controller.ChangeState(new FallState());
@@ -40,6 +40,8 @@ public class JumpState : AirborneState
         {
             this.controller.ChangeState(new GlideState());
         }
+
+        base.UpdateState();
     }
 
     public override void FixedUpdateState()

@@ -22,9 +22,7 @@ public class IdleState : PlayerState
     }
 
     public override void UpdateState()
-    {
-        base.UpdateState();
-
+    {        
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ||
             Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -34,6 +32,8 @@ public class IdleState : PlayerState
         {
             this.controller.ChangeState(new JumpState());
         }
+
+        base.UpdateState();
     }
 
     public override void FixedUpdateState()

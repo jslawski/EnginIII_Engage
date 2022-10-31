@@ -43,9 +43,7 @@ public class WallSlideState : PlayerState
     }
 
     public override void UpdateState()
-    {
-        base.UpdateState();
-
+    {        
         if (this.latchedWall == WallSide.Left)
         {
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
@@ -65,6 +63,8 @@ public class WallSlideState : PlayerState
         {
             this.controller.ChangeState(new WallJumpState());
         }
+
+        base.UpdateState();
     }
 
     public override void FixedUpdateState()

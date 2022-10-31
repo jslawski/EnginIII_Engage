@@ -30,13 +30,13 @@ public class GlideState : AirborneState
     }
 
     public override void UpdateState()
-    {
-        base.UpdateState();
-
+    {       
         if (Input.GetKeyUp(KeyCode.Space))
         {
             this.controller.ChangeState(new FallState());
         }
+
+        base.UpdateState();
     }
 
     public override void FixedUpdateState()

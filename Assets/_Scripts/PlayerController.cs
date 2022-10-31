@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask groundLayer;
 
+    public Collider waterCollider;
+    
+    public float floatMagnitude = 50.0f;
+
     private void Start()
     {
         this.playerRb = GetComponent<Rigidbody>();
@@ -51,5 +55,21 @@ public class PlayerController : MonoBehaviour
         this.currentState.Enter(this);
 
         this.debugStateName = this.currentState.GetType().ToString();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Water")
+        {
+            this.waterCollider = other;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Water")
+        {
+            this.waterCollider = null;
+        }
     }
 }
