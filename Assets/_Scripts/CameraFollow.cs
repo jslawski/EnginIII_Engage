@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
 {
     public static CameraFollow instance;
 
-    public PlayerCharacter playerCharacter;
+    public PlayerController playerController;
 
     private Camera thisCamera;
     private Transform cameraTransform;
@@ -42,9 +42,9 @@ public class CameraFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 playerViewportPosition = thisCamera.WorldToViewportPoint(this.playerCharacter.gameObject.transform.position);
+        Vector3 playerViewportPosition = thisCamera.WorldToViewportPoint(this.playerController.gameObject.transform.position);
 
-        if (this.playerCharacter != null && this.IsPlayerPastVerticalThreshold(playerViewportPosition.y))
+        if (this.playerController != null && this.IsPlayerPastVerticalThreshold(playerViewportPosition.y))
         {
             this.UpdateCameraVerticalPosition(playerViewportPosition);
         }
@@ -68,7 +68,7 @@ public class CameraFollow : MonoBehaviour
             worldSpaceCenteredPosition = this.thisCamera.ViewportToWorldPoint(new Vector3(0.5f, this.lowerVerticalViewportThreshold, this.cameraDistance));
         }
 
-        Vector3 shiftVector = new Vector3(0, this.playerCharacter.transform.position.y - worldSpaceCenteredPosition.y, 0);
+        Vector3 shiftVector = new Vector3(0, this.playerController.transform.position.y - worldSpaceCenteredPosition.y, 0);
 
         this.cameraTransform.Translate(shiftVector.normalized * 5f * Time.fixedDeltaTime);        
     }
@@ -77,7 +77,7 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 worldSpaceCenteredPosition = this.thisCamera.ViewportToWorldPoint(new Vector3(0.5f, this.upperVerticalViewportThreshold, this.cameraDistance));
 
-        Vector3 shiftVector = new Vector3(this.playerCharacter.transform.position.x - worldSpaceCenteredPosition.x, 0, 0);
+        Vector3 shiftVector = new Vector3(this.playerController.transform.position.x - worldSpaceCenteredPosition.x, 0, 0);
 
         this.cameraTransform.Translate(shiftVector.normalized * 5f * Time.fixedDeltaTime);
     }

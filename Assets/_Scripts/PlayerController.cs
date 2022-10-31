@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacter : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private string debugStateName;
+
     public PlayerState currentState;
-    
+
     [HideInInspector]
     public Rigidbody playerRb;
     [HideInInspector]
@@ -16,26 +19,37 @@ public class PlayerCharacter : MonoBehaviour
     public AudioSource audioSource;
 
     public LayerMask groundLayer;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         this.playerRb = GetComponent<Rigidbody>();
         this.playerCollider = GetComponent<BoxCollider>();
         this.characterAnimator = GetComponentInChildren<Animator>();
         this.audioSource = GetComponent<AudioSource>();
-        this.currentState = new FallState();
-        this.currentState.Enter(this);
-    }
 
-    // Update is called once per frame
-    void Update()
+        this.ChangeState(new FallState());
+    }
+    
+    private void Update()
     {
-        this.currentState.HandleInput(this);        
+        this.currentState.UpdateState();
     }
 
     private void FixedUpdate()
     {
-        this.currentState.UpdateState(this);
-    }    
+        this.currentState.FixedUpdateState();
+    }
+
+    public void ChangeState(PlayerState newState)
+    {
+        if (this.currentState != null)
+        {
+            this.currentState.Exit();
+        }
+        
+        this.currentState = newState;
+        this.currentState.Enter(this);
+
+        this.debugStateName = this.currentState.GetType().ToString();
+    }
 }
