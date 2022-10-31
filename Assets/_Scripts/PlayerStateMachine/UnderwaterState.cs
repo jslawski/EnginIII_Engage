@@ -61,11 +61,6 @@ public class UnderwaterState : PlayerState
         {
             Vector3 targetPosition = this.controller.playerRb.position + moveVector;
             this.controller.playerRb.MovePosition(targetPosition);
-
-            if (this.controller.audioSource.isPlaying == false)
-            {
-                this.controller.audioSource.Play();
-            }
         }
 
         this.ApplyBuoyancyForce();
