@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DieState : PlayerState
 {
-    private float timeToRespawn = 2.0f;
+    private float timeToRespawn = 1.0f;
 
     private Vector3 enterVelocity = Vector3.zero;
     private float deathMagnitude = 3.0f;
@@ -18,6 +18,9 @@ public class DieState : PlayerState
 
         this.controller.playerRb.velocity = Vector3.zero;
         this.controller.playerRb.useGravity = false;
+
+        this.controller.audioSource.clip = Resources.Load<AudioClip>("Audio/die");
+        this.controller.audioSource.Play();
     }
 
     public override void Exit()

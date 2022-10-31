@@ -92,6 +92,9 @@ public class PlayerController : MonoBehaviour
             SkillPickup newSkill = other.gameObject.GetComponent<SkillPickup>();
             this.skills.AddSkill(newSkill.skillStateName);
             Destroy(other.gameObject);
+
+            this.audioSource.clip = Resources.Load<AudioClip>("Audio/skill");
+            this.audioSource.Play();
         }
 
         if (other.tag == "Checkpoint")
