@@ -53,7 +53,7 @@ public class AirborneState : PlayerState
 
         Vector3 moveVector = this.moveDirection * this.moveSpeed * Time.fixedDeltaTime;
 
-        if (this.IsNearWall( moveVector) == true)
+        if (this.IsNearWall(moveVector) == true)
         {
             this.controller.ChangeState(new WallSlideState());            
             return;

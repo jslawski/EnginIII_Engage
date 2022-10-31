@@ -85,5 +85,10 @@ public class WallSlideState : PlayerState
 
             return;
         }
+
+        if (this.IsNearWall(Vector3.left) == false && this.IsNearWall(Vector3.right) == false)
+        {
+            this.controller.ChangeState(new FallState());
+        }
     }
 }
