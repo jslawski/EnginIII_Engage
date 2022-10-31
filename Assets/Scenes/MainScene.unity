@@ -539,11 +539,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 298171916984439007, guid: ebe90bea8db4b9e47abfc2c832e193a5, type: 3}
       propertyPath: skillStateName
-      value: WallSlideState
+      value: UnderwaterState
       objectReference: {fileID: 0}
     - target: {fileID: 298171916984439007, guid: ebe90bea8db4b9e47abfc2c832e193a5, type: 3}
       propertyPath: skillDisplayName
-      value: Wall Jump
+      value: Swim
       objectReference: {fileID: 0}
     - target: {fileID: 3563055471764532377, guid: ebe90bea8db4b9e47abfc2c832e193a5, type: 3}
       propertyPath: m_Name

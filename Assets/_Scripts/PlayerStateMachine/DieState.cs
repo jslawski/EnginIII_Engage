@@ -14,7 +14,6 @@ public class DieState : PlayerState
         base.Enter(controller);
 
         this.enterVelocity = this.controller.playerRb.velocity.normalized;
-        Debug.LogError("Enter Vel: " + this.enterVelocity);
         this.controller.characterAnimator.SetBool("Die", true);
 
         this.controller.playerRb.velocity = Vector3.zero;
