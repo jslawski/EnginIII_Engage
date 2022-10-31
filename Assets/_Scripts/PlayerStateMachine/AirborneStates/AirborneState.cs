@@ -20,7 +20,7 @@ public class AirborneState : PlayerState
     {
         base.Exit();
 
-        if (this.nearestWallLatchPoint != Vector3.zero)
+        if (IsNearWall(this.moveDirection))
         {
             this.controller.playerRb.MovePosition(this.nearestWallLatchPoint);
         }

@@ -33,8 +33,6 @@ public class PlayerState
                 this.controller.ChangeState(new DieState());
             }            
         }
-
-        
     }
 
     public virtual void FixedUpdateState() { }
@@ -44,7 +42,7 @@ public class PlayerState
         Vector3 leftOrigin = this.controller.playerRb.position - new Vector3(this.controller.playerCollider.bounds.extents.x * 0.8f, 0.0f, 0.0f);
         Vector3 rightOrigin = this.controller.playerRb.position + new Vector3(this.controller.playerCollider.bounds.extents.x * 0.8f, 0.0f, 0.0f);
 
-        float raycastMagnitude = this.controller.playerCollider.bounds.extents.y + 0.01f;//(Mathf.Abs(this.controller.playerRb.velocity.y) * Time.fixedDeltaTime);
+        float raycastMagnitude = this.controller.playerCollider.bounds.extents.y + 0.01f;// (Mathf.Abs(this.controller.playerRb.velocity.y) * Time.fixedDeltaTime);
 
         RaycastHit hitInfoLeft;
         RaycastHit hitInfoRight;
@@ -55,10 +53,14 @@ public class PlayerState
         if (leftHit == true)
         {
             this.distanceToGround = hitInfoLeft.distance;
-        }
-        else if (rightHit == true)
-        {
-            this.distanceToGround = hitInfoRight.distance;
+
+            if (rightHit == true)
+            {
+                if (hitInfoRight.distance < this.distanceToGround)
+                {
+                    this.distanceToGround = hitInfoRight.distance;
+                }
+            }
         }
 
         return (leftHit || rightHit);
