@@ -29,10 +29,10 @@ public class PlayerState
 
     protected bool IsGrounded()
     {
-        Vector3 leftOrigin = this.controller.playerRb.position - new Vector3(this.controller.playerCollider.bounds.extents.x * 0.9f, 0.0f, 0.0f);
-        Vector3 rightOrigin = this.controller.playerRb.position + new Vector3(this.controller.playerCollider.bounds.extents.x * 0.9f, 0.0f, 0.0f);
+        Vector3 leftOrigin = this.controller.playerRb.position - new Vector3(this.controller.playerCollider.bounds.extents.x * 0.8f, 0.0f, 0.0f);
+        Vector3 rightOrigin = this.controller.playerRb.position + new Vector3(this.controller.playerCollider.bounds.extents.x * 0.8f, 0.0f, 0.0f);
 
-        float raycastMagnitude = this.controller.playerCollider.bounds.extents.y + (Mathf.Abs(this.controller.playerRb.velocity.y) * Time.fixedDeltaTime);
+        float raycastMagnitude = this.controller.playerCollider.bounds.extents.y + 0.01f;//(Mathf.Abs(this.controller.playerRb.velocity.y) * Time.fixedDeltaTime);
 
         RaycastHit hitInfoLeft;
         RaycastHit hitInfoRight;

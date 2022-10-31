@@ -930,9 +930,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad7018b5231d5c49b6ce45313742fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperVerticalViewportThreshold: 0.8
+  upperVerticalViewportThreshold: 0.6
   lowerVerticalViewportThreshold: 0.4
-  leftHorizontalViewportThreshold: 0.3
+  leftHorizontalViewportThreshold: 0.7
   rightHorizontalViewportThreshold: 0.3
 --- !u!4 &995141924 stripped
 Transform:

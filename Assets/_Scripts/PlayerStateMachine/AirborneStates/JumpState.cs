@@ -38,7 +38,14 @@ public class JumpState : AirborneState
         }
         if (Input.GetKey(KeyCode.Space) && this.residualJumpTime <= 0.0f)
         {
-            this.controller.ChangeState(new GlideState());
+            if (this.controller.skills.HasSkill("GlideState"))
+            {
+                this.controller.ChangeState(new GlideState());
+            }
+            else
+            {
+                this.controller.ChangeState(new FallState());
+            }
         }
 
         base.UpdateState();

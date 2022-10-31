@@ -24,12 +24,16 @@ public class PlayerController : MonoBehaviour
     
     public float floatMagnitude = 50.0f;
 
+    public PlayerSkills skills;
+
     private void Start()
     {
         this.playerRb = GetComponent<Rigidbody>();
         this.playerCollider = GetComponent<BoxCollider>();
         this.characterAnimator = GetComponentInChildren<Animator>();
         this.audioSource = GetComponent<AudioSource>();
+        this.skills = new PlayerSkills();
+        this.skills.SetupDict();
 
         this.ChangeState(new FallState());
     }
@@ -46,6 +50,12 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeState(PlayerState newState)
     {
+        //Don't change states unless the player has the skill
+        if (!this.skills.HasSkill(newState.GetType().ToString()))
+        {
+            return;
+        }
+
         if (this.currentState != null)
         {
             this.currentState.Exit();
